@@ -1,14 +1,14 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import SignOut from "./SignOut";
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "Dashboard", href: "/dashboard", current: false },
+  { name: "About", href: "/about", current: false },
+  // { name: "Calendar", href: "/calendar", current: false },
 ];
 
 function classNames(...classes) {
@@ -18,7 +18,7 @@ function classNames(...classes) {
 export default function NavBar() {
   const { isLoggedIn } = useAppContext();
   return (
-    <Disclosure as="nav" className="bg-blue-600">
+    <Disclosure as="nav" className="bg-blue-600 fixed top-0 left-0 right-0">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -45,21 +45,57 @@ export default function NavBar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    {navigation.map((item) => {
+                      if (isLoggedIn && item.name == "Dashboard") {
+                        return (
+                          <NavLink
+                            key={item.name}
+                            to={item.href}
+                            className={({ isActive }) =>
+                              classNames(
+                                isActive
+                                  ? "bg-gray-900 text-white ajay"
+                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                "rounded-md px-3 py-2 text-sm font-medium"
+                              )
+                            }
+                            // className={classNames(
+                            //   item.current
+                            //     ? "bg-gray-900 text-white"
+                            //     : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            //   "rounded-md px-3 py-2 text-sm font-medium"
+                            // )}
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                          </NavLink>
+                        );
+                      } else if (item.name !== "Dashboard") {
+                        return (
+                          <NavLink
+                            key={item.name}
+                            to={item.href}
+                            className={({ isActive }) =>
+                              classNames(
+                                isActive
+                                  ? "bg-gray-900 text-white ajay"
+                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                "rounded-md px-3 py-2 text-sm font-medium"
+                              )
+                            }
+                            // className={classNames(
+                            //   item.current
+                            //     ? "bg-gray-900 text-white"
+                            //     : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            //   "rounded-md px-3 py-2 text-sm font-medium"
+                            // )}
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                          </NavLink>
+                        );
+                      }
+                    })}
                   </div>
                 </div>
               </div>
@@ -82,7 +118,7 @@ export default function NavBar() {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXSLkED4CNUDg-em-7BVgka5g0sXiC2-qAdQwoeFnC_w&s"
                           alt=""
                         />
                       </Menu.Button>

@@ -8,7 +8,7 @@ function Page404() {
           <div className="mx-auto max-w-screen-sm text-center">
             <img
               className="h-auto max-w-lg mx-auto -translate-y-20"
-              src="../public/image.png"
+              src="./image.png"
               alt="image description"
             />
             <p className="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">

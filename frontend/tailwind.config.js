@@ -7,11 +7,11 @@ export default {
     "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    container: {
-      padding: {
-        md: "10rem",
-      },
-    },
+    // container: {
+    //   padding: {
+    //     md: "10rem",
+    //   },
+    // },
     extend: {
       colors: {
         primary: {

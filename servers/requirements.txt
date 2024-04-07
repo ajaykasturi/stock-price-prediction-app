@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+TextBlob
+keras
+scikit-learn
+numpy
+pandas
+yfinance
+datetime
