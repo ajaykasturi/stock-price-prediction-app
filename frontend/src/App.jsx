@@ -7,7 +7,12 @@ import Layout from "./layouts/Layout";
 import DashBoard from "./components/DashBoard";
 import Home from "./components/Home";
 import About from "./components/About";
+import TradingView from "./components/TradingView";
+import NewsPage from "./pages/NewsPage";
+import { useAppContext } from "./contexts/AppContext";
+import Profile from "./components/Profile";
 function App() {
+  const { isLoggedIn } = useAppContext();
   return (
     <>
       <Routes>
@@ -20,9 +25,27 @@ function App() {
           }
         />
         <Route
-          path="/signin"
+          path="/trading-view"
           element={
             <Layout>
+              <div className="h-full">
+                <TradingView />
+              </div>
+            </Layout>
+          }
+        />
+        <Route
+          path="/news"
+          element={
+            <Layout>
+              <NewsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <Layout flag={"signin"}>
               <Signin />
             </Layout>
           }
@@ -35,14 +58,26 @@ function App() {
             </Layout>
           }
         />
-        <Route
-          path="/dashboard"
-          element={
-            <Layout>
-              <DashBoard />
-            </Layout>
-          }
-        />
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/dashboard"
+              element={
+                <Layout>
+                  <DashBoard />
+                </Layout>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Layout>
+                  <Profile />
+                </Layout>
+              }
+            />
+          </>
+        )}
         <Route
           path="/about"
           element={

@@ -28,6 +28,7 @@ export const signIn = async (formData) => {
   if (!response.ok) {
     throw new Error(responseBody.message);
   }
+  console.log(responseBody);
   return responseBody;
 };
 export const validateToken = async () => {
@@ -71,7 +72,7 @@ export const fetchTweets = async (ticker) => {
       language: "en",
     },
     headers: {
-      "X-RapidAPI-Key": "395f2b3228msh1a2beb7b2b81380p1ee20ajsn3a57dde9dcc8",
+      "X-RapidAPI-Key": "ebffcc5ffcmshdc6c9530db15f43p13ddffjsn210c59ffc659",
       "X-RapidAPI-Host": "twitter154.p.rapidapi.com",
     },
   };
@@ -81,6 +82,29 @@ export const fetchTweets = async (ticker) => {
     console.log(response.data.results);
     const res = response.data.results.map((tweet) => {
       return tweet.text;
+    });
+    console.log(res);
+    return res;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+export const fetchNews = async () => {
+  let config = {
+    method: "GET",
+    maxBodyLength: Infinity,
+    url: `https://twitter154.p.rapidapi.com/user/tweets?username=livemint&limit=40&include_replies=false&include_pinned=false`,
+    headers: {
+      "X-RapidAPI-Key": "ebffcc5ffcmshdc6c9530db15f43p13ddffjsn210c59ffc659",
+      "X-RapidAPI-Host": "twitter154.p.rapidapi.com",
+    },
+  };
+  try {
+    const response = await axios.request(config);
+    // console.log(response.data.results);
+    const res = response.data.results.map((tweet) => {
+      return tweet.tweet_id;
     });
     console.log(res);
     return res;

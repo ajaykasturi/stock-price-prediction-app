@@ -4,6 +4,8 @@ import Spinner from "./Spinner";
 import Graph from "./Graph";
 import DataTable from "./Table";
 import Table from "./Table";
+import LineChart from "./LineChart";
+import { stocks } from "../stocks";
 function PredictComp() {
   const [selectValue, setValue] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -18,7 +20,7 @@ function PredictComp() {
     e.preventDefault();
     console.log(selectValue);
     //fetch data from twiiter
-    const API_SENTIMENT = "http://127.0.0.1:8001/predict";
+    const API_SENTIMENT = "http://127.0.0.1:8000/predict";
     const data = [selectValue];
     axios.post(API_SENTIMENT, data).then((res) => {
       console.log(res.data.predicted);
@@ -29,7 +31,7 @@ function PredictComp() {
     });
   };
   return (
-    <div>
+    <div className="pt-8">
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
         <h1 className="text-3xl">Predict Stock Price</h1>
         <br></br>
@@ -46,10 +48,10 @@ function PredictComp() {
             id="stocktickers"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option value="">Choose a country</option>
-            <option value="AAPL">AAPL</option>
-            <option value="GOOG">GOOG</option>
-            <option value="INFY">INFY</option>
+            <option value="">Choose a Ticker</option>
+            {stocks.map((stock) => (
+              <option value={stock}>{stock}</option>
+            ))}
           </select>
           {!isLoading ? (
             <button
@@ -65,8 +67,8 @@ function PredictComp() {
         </div>
       </form>
       {dateList.length != 0 && (
-        <div className="flex justify-center w-50 flex-col items-center pt-8">
-          <Graph dateList={dateList} priceList={priceList} />
+        <div className="flex justify-center w-full gap-10 flex-col items-center pt-8">
+          <LineChart data={{ dateList, priceList }} />
           <Table data={predicted} />
         </div>
       )}

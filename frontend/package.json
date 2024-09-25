@@ -20,12 +20,16 @@
     "@mui/x-charts": "^7.1.0",
     "@mui/x-data-grid": "^7.1.1",
     "axios": "^1.6.8",
+    "chart.js": "^4.4.2",
+    "chartjs": "^0.3.24",
     "flowbite-react": "^0.7.8",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "react-tweet": "^3.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

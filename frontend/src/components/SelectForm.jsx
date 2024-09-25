@@ -4,6 +4,7 @@ import { fetchTweets } from "../api-client";
 import axios from "axios";
 import Pie from "./Pie";
 import Spinner from "./Spinner";
+import { stocks } from "../stocks";
 function SelectForm() {
   const [selectValue, setValue] = useState("");
   const [polarity, setPolarity] = useState({
@@ -44,7 +45,7 @@ function SelectForm() {
     //fetch data from twiiter
     fetchTweets(selectValue).then((res) => {
       console.log(res);
-      const API_SENTIMENT = "http://127.0.0.1:8001/sentiment";
+      const API_SENTIMENT = "http://127.0.0.1:8000/sentiment";
       axios.post(API_SENTIMENT, res).then((res) => {
         setPolarity({
           positive: res.data?.positive,
@@ -76,10 +77,10 @@ function SelectForm() {
               id="stocktickers"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="">Choose a country</option>
-              <option value="AAPL stock">AAPL</option>
-              <option value="GOOG stock">GOOG</option>
-              <option value="INFY stock">INFY</option>
+              <option value="">Choose a Ticker</option>
+              {stocks.map((stock) => (
+                <option value={stock}>{stock}</option>
+              ))}
             </select>
             {!isLoading ? (
               <button

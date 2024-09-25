@@ -1,11 +1,11 @@
 import React from "react";
-
+import url from "../assets/landingimg.jpeg";
 function Home() {
   return (
     <>
       <img
-        class="h-screen max-w-full"
-        src="https://miro.medium.com/v2/resize:fit:1400/0*dtiuqS8kNB66Mp5P"
+        className="h-screen max-w-full w-full object-cover absolute inset-0 "
+        src={url}
       />
     </>
   );

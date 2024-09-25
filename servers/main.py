@@ -20,6 +20,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+localhost:3000/
 @app.get("/")
 def root():
     return {"message":"server is running"}

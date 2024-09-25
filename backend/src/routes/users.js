@@ -21,7 +21,14 @@ router.post("/signup", registerInputValidator, async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       maxAge: 8640000,
     });
-    return res.status(200).json({ message: "signed up" });
+    return res.status(200).json({
+      message: "signed up",
+      userId: user._id,
+      token,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    });
   } catch (error) {
     return res.status(500).json({ message: "Something went wrong" });
   }

@@ -5,7 +5,7 @@ import yfinance as yf
 from datetime import datetime
 
 start = '2010-01-01'
-stock = 'INFY'
+stock = 'ORCL'
 data = yf.download(stock, start,datetime.now())
 
 data.reset_index(inplace=True)
@@ -68,11 +68,11 @@ y_test = y_test.reshape(-1,1)
 
 model.fit(x_train,y_train, epochs = 50, batch_size =32)
 
-model.save("infosys.keras")
+model.save("ORCL.keras")
 
 
 from keras.models import load_model
-model = load_model('infosys.keras')
+model = load_model('ORCL.keras')
 
 y_predict = model.predict(x_test)
 

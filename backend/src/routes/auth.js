@@ -28,7 +28,13 @@ router.post("/signin", authInputValidator, async (req, res) => {
       maxAge: 8640000,
     });
 
-    return res.json({ userId: user._id, token });
+    return res.json({
+      userId: user._id,
+      token,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    });
   } catch (error) {
     return res.status(500).json({ message: "Something went wrong" });
   }
