@@ -1,6 +1,6 @@
 ## Stock Price Prediction Web Application
-This project aims to forecast future stock movements by leveraging both historical stock data and public sentiment, processed independently but linked via stock tickers. We trained a Long Short-Term Memory (LSTM) neural network on time-series stock price data to identify trends and generate future price predictions for individual stock tickers. Separately, we used TextBlob to perform sentiment analysis on news headlines and social media content related to each ticker, capturing the market's emotional tone.
-By analyzing these two streams—price-based trends and sentiment-based signals—our system provides actionable insights such as whether to buy, hold, or sell a stock. The combination of technical prediction and sentiment evaluation offers a more informed perspective on market behavior.
+- This project aims to forecast future stock movements by leveraging both historical stock data and public sentiment, processed independently but linked via stock tickers. We trained a Long Short-Term Memory (LSTM) neural network on time-series stock price data to identify trends and generate future price predictions for individual stock tickers. Separately, we used TextBlob to perform sentiment analysis on news headlines and social media content related to each ticker, capturing the market's emotional tone.
+- By analyzing these two streams—price-based trends and sentiment-based signals—our system provides actionable insights such as whether to buy, hold, or sell a stock. The combination of technical prediction and sentiment evaluation offers a more informed perspective on market behavior.
 
 
 
